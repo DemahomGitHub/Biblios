@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <f:view locale="#{internationalizationMB.local}" />
     <f:loadBundle basename="languages.lang" var="message"/>
@@ -19,9 +20,18 @@
 
         <div id="top">
             <h:form id="header_form">
-                <h:commandLink class="command_link" value="#{message.connectionLink}" action="faces/connectionPage.xhtml" />
-                <h:commandLink class="command_link" value="#{message.registrationLink}" action="faces/registrationPage.xhtml"/>
-                <h:commandLink class="command_link" value="#{message.shoppingBagLink}" action="faces/shoppingBagPage.xhtml"/>
+                <h:commandLink class="command_link" value="#{message.homeLink}" action="faces/index.xhtml"/>
+                <c:if test="#{empty clientManager.clientToManage.prenom}">
+                    <h:commandLink class="command_link" value="#{message.connectionLink}" action="faces/connectionPage.xhtml" />
+                    <h:commandLink class="command_link" value="#{message.registrationLink}" action="faces/registrationPage.xhtml"/>
+                    <h:commandLink class="command_link" value="#{message.shoppingBagLink}" action="faces/shoppingBagPage.xhtml"/>
+                </c:if>
+                <c:if test="#{not empty clientManager.clientToManage.prenom}">
+                    <ui:insert>Welcom, #{clientManager.clientToManage}</ui:insert>
+                    <h:commandLink class="command_link" value="Mon compte" action="faces/index.xhtml"/>
+                    <h:commandLink class="command_link" value="#{message.shoppingBagLink}(0)" action="faces/shoppingBagPage.xhtml"/>
+                </c:if>
+                
                 <h:commandButton class="command_button" value="FR" action="#{internationalizationMB.setToFrench()}"/>
                 <h:commandButton class="command_button" value="EN" action="#{internationalizationMB.setToEnglish()}" />                
             </h:form>
@@ -32,23 +42,26 @@
             <ui:insert name="content">
                 <h1>Page de connexion</h1>
                 <h:form>
-                    <h:panelGrid columns="3">
+                    <h:panelGrid columns="3" style="text-align: right">
                         <h:outputLabel value="Email : " for="emailInput"></h:outputLabel>
                         <h:inputText id="emailInput"
+                                     size="40"
                                      required="true"
                                      requiredMessage="L'email est obligatoire">
                         </h:inputText>
-                        <h:message for="emailInput"></h:message>
+                        <h:message for="emailInput" style="color:red"></h:message>
                         
                         <h:outputLabel value="Mot de passe : " for="passwordInput"></h:outputLabel>
                         <h:inputSecret id="passwordInput"
+                                     size="40"
                                      required="true"
                                      validatorMessage="Le mot de passe doit être compris entre 8 et 32 caractères"
                                      requiredMessage="Le mot de passe est obligatoire">
                             <f:validateLength minimum="8" maximum="32"></f:validateLength>
                         </h:inputSecret>
-                        <h:message for="passwordInput"></h:message>
-                        <h:commandButton value="Valider" />
+                        <h:message for="passwordInput" style="color:red"></h:message>
+                        
+                        <h:commandButton class="command_button_validation" value="Valider" />
                     </h:panelGrid>
                 </h:form>                
             </ui:insert>
