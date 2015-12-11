@@ -17,25 +17,10 @@
     </h:head>
 
     <h:body>
-
-        <div id="top">
-            <h:form id="header_form">
-                <h:commandLink class="command_link" value="#{message.homeLink}" action="faces/index.xhtml"/>
-                <c:if test="#{empty clientManager.clientToManage.prenom}">
-                    <h:commandLink class="command_link" value="#{message.connectionLink}" action="faces/connectionPage.xhtml" />
-                    <h:commandLink class="command_link" value="#{message.registrationLink}" action="faces/registrationPage.xhtml"/>
-                    <h:commandLink class="command_link" value="#{message.shoppingBagLink}" action="faces/shoppingBagPage.xhtml"/>
-                </c:if>
-                <c:if test="#{not empty clientManager.clientToManage.prenom}">
-                    <ui:insert>Welcom, #{clientManager.clientToManage.prenom}</ui:insert>
-                    <h:commandLink class="command_link" value="Mon compte" action="faces/index.xhtml"/>
-                    <h:commandLink class="command_link" value="#{message.shoppingBagLink}(0)" action="faces/shoppingBagPage.xhtml"/>
-                </c:if>
-                
-                <h:commandButton class="command_button" value="FR" action="#{internationalizationMB.setToFrench()}"/>
-                <h:commandButton class="command_button" value="EN" action="#{internationalizationMB.setToEnglish()}" />                
-            </h:form>
-             <a href="index.xhtml"><img id="logo" alt="Logo site" src="./images/logo_site.jpg" /></a>
+        <div>
+            <ui:insert name="top">
+                <ui:include src="headerTemplate.xhtml" />
+            </ui:insert>
         </div>
 
         <div id="content" class="center_content">
@@ -91,8 +76,12 @@
                             <h:outputLabel value="Telephone : " for="telephoneInput"></h:outputLabel>
                             <h:inputText id="telephoneInput"
                                          value="#{clientManager.clientToManage.telephone}"
-                                         size="30"
-                                         required="false">                                             
+                                         size="30"                                         
+                                         required="false"
+                                         converterMessage="Only numbers are allowed."
+                                         validatorMessage="The number of digits most be between 8 and 20" > 
+                                <f:convertNumber type="number" integerOnly="true" />
+                                <f:validateLength minimum="8" maximum="20" />
                             </h:inputText>
                             <h:message for="telephoneInput"></h:message>
                             
@@ -183,8 +172,10 @@
                 </ui:insert>
         </div>
 
-        <div id="bottom">
-            <ui:insert name="bottom"> By T. Mohamed and M. Thierry </ui:insert>
+        <div>
+            <ui:insert name="bottom">
+                <ui:include src="bottomTemplate.xhtml" />
+            </ui:insert>
         </div>
 
     </h:body>
