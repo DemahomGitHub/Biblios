@@ -27,7 +27,7 @@
                     <h:commandLink class="command_link" value="#{message.shoppingBagLink}" action="faces/shoppingBagPage.xhtml"/>
                 </c:if>
                 <c:if test="#{not empty clientManager.clientToManage.prenom}">
-                    <ui:insert>Welcom, #{clientManager.clientToManage}</ui:insert>
+                    <ui:insert>Welcom, #{clientManager.clientToManage.prenom}</ui:insert>
                     <h:commandLink class="command_link" value="Mon compte" action="faces/index.xhtml"/>
                     <h:commandLink class="command_link" value="#{message.shoppingBagLink}(0)" action="faces/shoppingBagPage.xhtml"/>
                 </c:if>
