@@ -27,5 +27,20 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     public ClientFacade() {
         super(Client.class);
     }
+
+    @Override
+    public model.Client getClientFromMail(String mail) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public model.Client getClientFromMailAndPassword(String mail, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addClient(model.Client newClient) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

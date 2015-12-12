@@ -5,21 +5,19 @@
  */
 package businessSessionBean;
 
-import entityFacades.ClientFacadeLocal;
+import entityFacades.LivreFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-
 /**
  *
- * @author Demahom
+ * @author client
  */
 @Stateless
-public class ClientSessionBean implements ClientSessionBeanLocal {
+public class LivreSessionBean implements LivreSessionBeanLocal {
     @EJB
-    private ClientFacadeLocal clientFacade;
+    private LivreFacadeLocal livreFacade;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
 }

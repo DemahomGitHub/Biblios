@@ -6,12 +6,23 @@
 package businessSessionBean;
 
 import javax.ejb.Local;
+import model.Client;
 
 /**
  *
- * @author Demahom
+ * @author client
  */
 @Local
 public interface ClientSessionBeanLocal {
+
+    int countAllClient();
+    
+    model.Client getClientByMail(String mail);
+
+    model.Client getClientByMailAndPassword(String mail, String password);
+
+    Boolean isMailAlreadyUsed(String mail);
+
+    void addClient(Client newClient);
     
 }

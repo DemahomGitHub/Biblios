@@ -29,5 +29,11 @@ public interface ClientFacadeLocal {
     List<Client> findRange(int[] range);
 
     int count();
+
+    public model.Client getClientFromMail(String mail);
+
+    public model.Client getClientFromMailAndPassword(String mail, String password);
+
+    public void addClient(model.Client newClient);
     
 }

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <f:view locale="#{internationalizationMB.local}" />
     <f:loadBundle basename="languages.lang" var="message"/>
@@ -30,45 +31,23 @@
             <div id="content" class="left_content">
                 <ui:insert name="content">
                     <h1>Sur nos tables</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nullam ut consequat ipsum. 
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                        Nulla facilisi. Pellentesque dignissim dolor vestibulum eros lobortis blandit. 
-                        Integer luctus auctor justo at hendrerit. 
-                        Donec neque odio, lobortis at mi ac, ultrices finibus orci. 
-                        Curabitur sed sem eget enim dapibus porttitor sit amet ut sapien. 
-                        Integer nunc felis, consectetur vitae rhoncus quis, dignissim quis sem. 
-                        Aenean pretium, massa sit amet porta sagittis, augue mauris rhoncus lorem, a ornare odio elit vel risus. 
-                        Quisque iaculis porttitor ex nec finibus. 
-                        Sed eget turpis in ex tempor pretium.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nullam ut consequat ipsum. 
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                        Nulla facilisi. Pellentesque dignissim dolor vestibulum eros lobortis blandit. 
-                        Integer luctus auctor justo at hendrerit. 
-                        Donec neque odio, lobortis at mi ac, ultrices finibus orci. 
-                        Curabitur sed sem eget enim dapibus porttitor sit amet ut sapien. 
-                        Integer nunc felis, consectetur vitae rhoncus quis, dignissim quis sem. 
-                        Aenean pretium, massa sit amet porta sagittis, augue mauris rhoncus lorem, a ornare odio elit vel risus. 
-                        Quisque iaculis porttitor ex nec finibus. 
-                        Sed eget turpis in ex tempor pretium.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Nullam ut consequat ipsum. 
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                        Nulla facilisi. Pellentesque dignissim dolor vestibulum eros lobortis blandit. 
-                        Integer luctus auctor justo at hendrerit. 
-                        Donec neque odio, lobortis at mi ac, ultrices finibus orci. 
-                        Curabitur sed sem eget enim dapibus porttitor sit amet ut sapien. 
-                        Integer nunc felis, consectetur vitae rhoncus quis, dignissim quis sem. 
-                        Aenean pretium, massa sit amet porta sagittis, augue mauris rhoncus lorem, a ornare odio elit vel risus. 
-                        Quisque iaculis porttitor ex nec finibus. 
-                        Sed eget turpis in ex tempor pretium.
-                    </p>
+                    <h:form>
+                        <c:forEach items="#{allBooksModelManager.newestBooks}" var="bookModel">
+                            <div class="oneBookRow">
+                                <div class="bookImage"> 
+                                    <a href="index.xhtml"><img src="#{bookModel.book.image}" height="200" width="180" /></a>
+                                </div>
+                                <div class="bookDescription">
+                                    <h:panelGrid columns="1">
+                                        <h:commandLink value="Titre : #{bookModel.bookTanslation.titre}" />
+                                        <h:commandLink value="Editeur : #{bookModel.book.maisonEditionLivre.nom}" />
+                                        <h:outputText value="Prix : #{bookModel.book.prix}" />
+                                        <h:outputText value="Résumé : #{bookModel.bookTanslation.resume}" />
+                                    </h:panelGrid>                            
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
                 </ui:insert>
             </div>
         </div>

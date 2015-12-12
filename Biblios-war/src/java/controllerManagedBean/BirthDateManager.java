@@ -106,6 +106,5 @@ public class BirthDateManager implements Serializable {
     
     private ArrayList <BirthDate> days;
     private ArrayList <BirthDate> months;
-    private ArrayList <BirthDate> years;
-    
+    private ArrayList <BirthDate> years;    
 }

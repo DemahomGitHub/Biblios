@@ -30,6 +30,7 @@
                     <h:panelGrid columns="3" style="text-align: right">
                         <h:outputLabel value="Email : " for="emailInput"></h:outputLabel>
                         <h:inputText id="emailInput"
+                                     value="#{clientManager.connectionEmail}"
                                      size="40"
                                      required="true"
                                      requiredMessage="L'email est obligatoire">
@@ -38,6 +39,7 @@
                         
                         <h:outputLabel value="Mot de passe : " for="passwordInput"></h:outputLabel>
                         <h:inputSecret id="passwordInput"
+                                       value="#{clientManager.connectionPassword}"
                                      size="40"
                                      required="true"
                                      validatorMessage="Le mot de passe doit être compris entre 8 et 32 caractères"
@@ -46,7 +48,7 @@
                         </h:inputSecret>
                         <h:message for="passwordInput" style="color:red"></h:message>
                         
-                        <h:commandButton class="command_button_validation" value="Valider" action="faces/index.xhtml" />
+                        <h:commandButton class="command_button_validation" value="Valider" action="#{clientManager.login()}" />
                     </h:panelGrid>
                 </h:form>                
             </ui:insert>

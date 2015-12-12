@@ -23,6 +23,7 @@ public class ClientManager implements Serializable {
      */
     public ClientManager() {
         this.clientToManage = new Client();
+        this.isConnected = false;
     }
 
     public Client getClientToManage() {
@@ -96,13 +97,64 @@ public class ClientManager implements Serializable {
     public void setYear(Integer year) {
         this.year = year;
     }
+
+    public Boolean getIsConnected() {
+        return isConnected;
+    }
+
+    public void setIsConnected(Boolean isConnected) {
+        this.isConnected = isConnected;
+    }
+
+    public String getConnectionEmail() {
+        return connectionEmail;
+    }
+
+    public void setConnectionEmail(String connectionEmail) {
+        this.connectionEmail = connectionEmail;
+    }
+
+    public String getConnectionPassword() {
+        return connectionPassword;
+    }
+
+    public void setConnectionPassword(String connectionPassword) {
+        this.connectionPassword = connectionPassword;
+    }    
     
     
+    public String login() {
+        if (isConnectionValid()) {
+            this.setIsConnected(true);
+            return "index";
+        }
+        return "connectionPage";
+    }
     
+    private boolean isEmailValid() {
+        if (clientToManage.getMail() != null && connectionEmail != null)
+            return this.clientToManage.getMail().equals(this.connectionEmail);
+        
+        return false;
+    }
+    
+    private boolean isPasswordValid() {
+        if (this.clientToManage.getPassword() != null && this.connectionPassword != null)
+            return this.clientToManage.getPassword().equals(this.connectionPassword);
+        
+        return false;
+    }
+    
+    private boolean isConnectionValid() {
+        return isEmailValid() && isPasswordValid();
+    }
     
         
     private Client clientToManage;
     private String passwordToConfirm;
     private String street,areaCode,city,country;
     private Integer day,month,year;
+    private Boolean isConnected;
+    private String connectionEmail;
+    private String connectionPassword;
 }

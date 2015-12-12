@@ -6,6 +6,7 @@
 package entityFacades;
 
 import entityBeans.Categorie;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,11 @@ public class CategorieFacade extends AbstractFacade<Categorie> implements Catego
 
     public CategorieFacade() {
         super(Categorie.class);
+    }
+
+    @Override
+    public List<model.CategorieTraduction> getAllCategorie() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
